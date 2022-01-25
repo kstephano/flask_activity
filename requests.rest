@@ -1,7 +1,9 @@
 GET http://localhost:5000/dienda
 
 ###
+GET http://localhost:5000/api/characters
 
+###
 POST http://localhost:5000/api/characters
 Content-Type: application/json
 
@@ -11,12 +13,26 @@ Content-Type: application/json
 }
 
 ###
+GET http://localhost:5000/api/characters/3
 
-POST http://localhost:5000/api/characters
+###
+PATCH http://localhost:5000/api/characters/3
 Content-Type: application/json
 
 {
-    "name": "Ramone",
-    "quote": "Hey, you scratched my paint! I oughta take a blowtorch to you, man!"
+    "name": "tomato"
 }
 
+### 
+PUT http://localhost:5000/api/characters/3
+Content-Type: application/json
+
+{
+    "name": "Tow Mater"
+}
+
+###
+DELETE http://localhost:5000/api/characters/9
+
+###
+GET http://localhost:5000/1

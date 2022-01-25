@@ -2,9 +2,13 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 from werkzeug import exceptions
 from controllers import characters
+from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///tmp/test.db'
+db = SQLAlchemy(app)
 CORS(app)
+
 
 @app.route('/')
 def home():
@@ -26,7 +30,6 @@ def characters_handler():
     }
     resp, code = fns[request.method](request)
     return jsonify(resp), code
-
 
 @app.route('/api/characters/<int:characters_id>', methods=['GET', 'PATCH', 'PUT', 'DELETE'])
 def character_handler(characters_id):
@@ -59,4 +62,3 @@ def handle_server_error(err):
 
 if __name__ == '__main__':
     app.run(debug=True)
-
