@@ -1,0 +1,18 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[scripts]
+dev = "bash -c \"export FLASK_ENV=development && flask run\""
+start = "waitress-serve --listen=*:5000 app.wsgi:application"
+
+[packages]
+flask = "*"
+flask-cors = "*"
+waitress = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.10"
