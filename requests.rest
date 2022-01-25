@@ -1,10 +1,22 @@
-GET http://localhost:5000
+GET http://localhost:5000/dienda
 
 ###
 
-POST http://localhost:5000/penguins
+POST http://localhost:5000/api/characters
 Content-Type: application/json
 
 {
-    "name": "Pinj"
+    "name": "Helicopter helicopter",
+    "quote": "I like trains"
 }
+
+###
+
+POST http://localhost:5000/api/characters
+Content-Type: application/json
+
+{
+    "name": "Ramone",
+    "quote": "Hey, you scratched my paint! I oughta take a blowtorch to you, man!"
+}
+

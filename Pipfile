@@ -5,12 +5,13 @@ name = "pypi"
 
 [scripts]
 dev = "bash -c \"export FLASK_ENV=development && flask run\""
-start = "waitress-serve --listen=*:5000 app.wsgi:application"
+start = "waitress-serve --listen=*:5000 wsgi:app"
 
 [packages]
 flask = "*"
 flask-cors = "*"
 waitress = "*"
+flask-sqlalchemy = "*"
 
 [dev-packages]
 
