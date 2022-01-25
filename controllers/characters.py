@@ -1,20 +1,22 @@
 from werkzeug.exceptions import BadRequest
-from models.Character import Character, db
+from models.Character import Character, db, serialize
 from flask import Flask
-from models.Character import Character
 
 def index(req):
-    return Character.query.all(), 200
+    chars = Character.query.all()
+    chars = list(map(serialize, chars))
+    return chars, 200
 
 def show(req, id):
-    return find_by_id(id), 200
+    print(find_by_id(id))
+    return serialize(find_by_id(id)), 200
 
 def create(req):
     data = req.get_json()
     new_char = Character(name=data["name"], quotes=data["quotes"])
     db.session.add(new_char)
     db.session.commit()
-    return new_char, 201
+    return serialize(new_char), 201
 
 def update(req, id):
     char = find_by_id(id)
@@ -22,17 +24,19 @@ def update(req, id):
     for key, val in data.items():
         char[key] = val
     db.session.commit()
-    return char, 201
+    return serialize(char), 201
 
 def destroy(req, id):
     char = find_by_id(id)
     db.session.delete(char)
     db.session.commit()
-    return char, 204
+    return serialize(char), 204
 
 def find_by_id(id):
+    print("id = ", id)
     try:
-        char = Character.query.filter_by(id=id)
+        char = Character.query.get(id)
+        print(char)
         return char
     except:
         raise BadRequest(f"Character with id {id} does not exist!")

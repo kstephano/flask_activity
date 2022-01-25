@@ -1,8 +1,7 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.exceptions import BadRequest
-from __main__ import db
-
+from app import db
 
 class Character(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -32,4 +31,9 @@ def append_char():
         db.session.add(char)
     db.session.commit()
 
-
+def serialize(self):
+    return {
+        "id": self.id,
+        "name": self.name,
+        "quotes": self.quotes
+    }

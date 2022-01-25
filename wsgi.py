@@ -1,8 +1,9 @@
 from app import app
-from models.Character import db, append_char, Character
+from models.Character import append_char, Character, db
 
+
+db.drop_all()
 db.create_all()
 append_char()
 
-print(Character.query.all())
 app.run()
