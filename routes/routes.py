@@ -7,7 +7,7 @@ from app import app
 
 @app.route('/')
 def home():
-    return '🏎 Welcome 🚓 to the 🚘 home of 🚔 cars, friend 🚗'
+    return '<h1>🏎 Welcome 🚓 to the 🚘 home of 🚔 cars, friend 🚗</h1>'
 
 @app.route('/kachow')
 def kerchow():
