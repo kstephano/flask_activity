@@ -37,3 +37,9 @@ def serialize(self):
         "name": self.name,
         "quotes": self.quotes
     }
+
+def updateCharacter(self, data):
+    for key, value in data.items():
+        if key == "name": self.name = value
+        if key == "quote": self.quotes = value
+    return self 

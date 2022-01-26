@@ -1,5 +1,5 @@
 from werkzeug.exceptions import BadRequest
-from models.Character import Character, db, serialize
+from models.Character import Character, db, serialize, updateCharacter
 from flask import Flask
 
 def index(req):
@@ -19,10 +19,10 @@ def create(req):
     return serialize(new_char), 201
 
 def update(req, id):
+    print("id = ", id)
     char = find_by_id(id)
     data = req.get_json()
-    for key, val in data.items():
-        char[key] = val
+    updateCharacter(char, data)
     db.session.commit()
     return serialize(char), 201
 
@@ -33,7 +33,6 @@ def destroy(req, id):
     return serialize(char), 204
 
 def find_by_id(id):
-    print("id = ", id)
     try:
         char = Character.query.get(id)
         print(char)
